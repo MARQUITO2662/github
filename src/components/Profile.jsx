@@ -1,3 +1,4 @@
+// Profile.jsx
 import React from 'react';
 
 const Profile = ({ userData }) => {

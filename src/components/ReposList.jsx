@@ -4,8 +4,7 @@ const ReposList = ({ repos, showAllRepos }) => {
   if (!repos.length) return null;
 
   const uniqueRepos = []; // Lista para almacenar repositorios únicos
-
-  const displayedRepos = showAllRepos ? repos : repos.slice(0, 2); // Mostrar solo los primeros 4 repositorios si showAllRepos es false
+  const displayedRepos = showAllRepos ? repos : repos.slice(0, 4); // Mostrar solo los primeros 4 repositorios si showAllRepos es false
 
   // Filtrar repositorios duplicados
   displayedRepos.forEach((repo) => {
@@ -15,9 +14,9 @@ const ReposList = ({ repos, showAllRepos }) => {
   });
 
   return (
-    <div className="w-3/4 grid grid-cols-2 gap-4 text-white">
+    <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-white">
       {uniqueRepos.map((repo) => (
-        <div key={repo.id} className="bg-[#1D1B48] p-4 rounded-md h-48 border border-[#4A5567]">
+        <a href={repo.html_url} target="_blank" rel="noopener noreferrer" key={repo.id} className="bg-[#1D1B48] p-4 rounded-md h-48 border border-[#4A5567] hover:bg-[#26235b] transition duration-300">
           <h2 className="text-lg font-bold text-white">{repo.name}</h2>
           <p className="text-[#CDD5E0]">{repo.description}</p>
           <div className="flex items-center mt-2">
@@ -31,7 +30,7 @@ const ReposList = ({ repos, showAllRepos }) => {
             <span className="text-[#4A5567]">{repo.stargazers_count}</span>
             <span className="text-[#4A5567] ml-4">Updated {new Date(repo.updated_at).toLocaleDateString()}</span>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   );
