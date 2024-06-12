@@ -7,12 +7,12 @@ const Profile = ({ userData }) => {
       <img
         src={userData.avatar_url}
         alt={userData.login}
-        className="w-32 h-32 rounded-full mb-4"
+        className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mb-4"
       />
-      <h1 className="text-2xl font-bold">{userData.name}</h1>
-      <p className="text-[#4A5567]">@{userData.login}</p>
+      <h1 className="text-xl sm:text-2xl font-bold">{userData.name}</h1>
+      <p className="text-gray-500">@{userData.login}</p>
       <p className="text-center mt-4">{userData.bio}</p>
-      <div className="flex mt-4 space-x-8">
+      <div className="flex mt-4 space-x-4 sm:space-x-8">
         <div>
           <span className="font-bold">{userData.followers}</span> Followers
         </div>
@@ -28,3 +28,7 @@ const Profile = ({ userData }) => {
 };
 
 export default Profile;
+
+
+
+
