@@ -3,11 +3,20 @@ import React from 'react';
 const ReposList = ({ repos, showAllRepos }) => {
   if (!repos.length) return null;
 
-  const displayedRepos = showAllRepos ? repos : repos.slice(0, 4);
+  const uniqueRepos = []; // Lista para almacenar repositorios únicos
+
+  const displayedRepos = showAllRepos ? repos : repos.slice(0, 2); // Mostrar solo los primeros 4 repositorios si showAllRepos es false
+
+  // Filtrar repositorios duplicados
+  displayedRepos.forEach((repo) => {
+    if (!uniqueRepos.some((item) => item.id === repo.id)) {
+      uniqueRepos.push(repo);
+    }
+  });
 
   return (
     <div className="w-3/4 grid grid-cols-2 gap-4 text-white">
-      {displayedRepos.map((repo) => (
+      {uniqueRepos.map((repo) => (
         <div key={repo.id} className="bg-[#1D1B48] p-4 rounded-md h-48 border border-[#4A5567]">
           <h2 className="text-lg font-bold text-white">{repo.name}</h2>
           <p className="text-[#CDD5E0]">{repo.description}</p>
