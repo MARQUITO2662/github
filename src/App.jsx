@@ -50,20 +50,17 @@ function App() {
           </div>
         </div>
         <div className="bg-[#364153] h-3/4 w-full flex flex-col items-center py-8 relative z-10">
-  <div className="w-3/4 text-center mb-4">
-    <div className="flex justify-center space-x-8">
-      <div className="relative flex flex-col items-center">
-                        <img src="/github.png" alt="GitHub Logo" className="w-28 h-28 mb-2 border-4 border-[#364153] rounded-lg absolute -top-16 z-20 bg-[#364153]" />
-        {userData && (
-          <img src={userData.avatar_url} alt="GitHub Logo" className="w-28 h-28 mb-2 border-4 border-[#364153] rounded-lg absolute -top-16 z-20 bg-[#364153]" />
-        )}
-        <div className="text-[#CDD5E0] mt-20">
-          <h1 className="text-3xl font-bold mb-2">GitHub</h1>
-          <p>How people build software</p>
-        </div>
-      
-    
-  
+          <div className="w-3/4 text-center mb-4">
+            <div className="flex justify-center space-x-8">
+              <div className="relative flex flex-col items-center">
+                <img src="/github.png" alt="GitHub Logo" className="w-28 h-28 mb-2 border-4 border-[#364153] rounded-lg absolute -top-16 z-20 bg-[#364153]" />
+                {userData && (
+                  <img src={userData.avatar_url} alt="GitHub Logo" className="w-28 h-28 mb-2 border-4 border-[#364153] rounded-lg absolute -top-16 z-20 bg-[#364153]" />
+                )}
+                <div className="text-[#CDD5E0] mt-20">
+                  <h1 className="text-3xl font-bold mb-2">GitHub</h1>
+                  <p>How people build software</p>
+                </div>
               </div>
               <div className="flex items-center space-x-4 -mt-24">
                 <div className="bg-[#111729] px-4 py-2 rounded-md border border-[#4A5567]">
@@ -83,7 +80,6 @@ function App() {
               </div>
             </div>
           </div>
-
           {hasSearched && (
             <div className="w-3/4">
               <ReposList repos={repos} />
@@ -175,12 +171,22 @@ function App() {
             </div>
           )}
 
-          {hasSearched && !showAllRepos && (
-            <div className="flex items-center justify-center w-full h-full">
-              <button onClick={() => setShowAllRepos(true)} className="bg-[#4A5567] hover:bg-[#576574] text-[#CDD5E0] px-4 py-2 rounded-md">Show all repositories</button>
+
+          {hasSearched && (
+            <div className="w-3/4">
+              <ReposList repos={repos} showAllRepos={showAllRepos} />
+              {repos.length > 4 && (
+                <div className="mt-4 text-center">
+                  <button
+                    className="bg-[#364153] text-[#a9b5c7] p-2 rounded-md border border-[#4A5567] hover:bg-[#4A5567] hover:text-[#364153]"
+                    onClick={() => setShowAllRepos(!showAllRepos)}
+                  >
+                    {showAllRepos ? 'Hide' : 'View all'} repositories
+                  </button>
+                </div>
+              )}
             </div>
           )}
-
         </div>
       </div>
     </div>
@@ -188,3 +194,4 @@ function App() {
 }
 
 export default App;
+
