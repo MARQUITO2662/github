@@ -1,16 +1,29 @@
 import React from 'react';
 
-function Profile({ userData }) {
+const Profile = ({ userData }) => {
   return (
-    <div className="bg-white text-black border p-4 mb-4 rounded-lg shadow-md">
-      <img src={userData.avatar_url} alt={userData.login} className="w-24 h-24 rounded-full mb-4" />
-      <h2 className="text-xl font-bold">{userData.name || userData.login}</h2>
-      <p>{userData.bio}</p>
-      <p><strong>Followers:</strong> {userData.followers}</p>
-      <p><strong>Following:</strong> {userData.following}</p>
-      <p><strong>Location:</strong> {userData.location}</p>
+    <div className="flex flex-col items-center p-6">
+      <img
+        src={userData.avatar_url}
+        alt={userData.login}
+        className="w-32 h-32 rounded-full mb-4"
+      />
+      <h1 className="text-2xl font-bold">{userData.name}</h1>
+      <p className="text-[#4A5567]">@{userData.login}</p>
+      <p className="text-center mt-4">{userData.bio}</p>
+      <div className="flex mt-4 space-x-8">
+        <div>
+          <span className="font-bold">{userData.followers}</span> Followers
+        </div>
+        <div>
+          <span className="font-bold">{userData.following}</span> Following
+        </div>
+        <div>
+          <span className="font-bold">{userData.public_repos}</span> Repositories
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Profile;
