@@ -4,10 +4,9 @@ import React from 'react';
 const ReposList = ({ repos, showAllRepos }) => {
   if (!repos.length) return null;
 
-  const uniqueRepos = []; // Lista para almacenar repositorios únicos
-  const displayedRepos = showAllRepos ? repos : repos.slice(0, 4); // Mostrar solo los primeros 4 repositorios si showAllRepos es false
+  const uniqueRepos = [];
+  const displayedRepos = showAllRepos ? repos : repos.slice(0, 4);
 
-  // Filtrar repositorios duplicados
   displayedRepos.forEach((repo) => {
     if (!uniqueRepos.some((item) => item.id === repo.id)) {
       uniqueRepos.push(repo);
@@ -17,9 +16,15 @@ const ReposList = ({ repos, showAllRepos }) => {
   return (
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {uniqueRepos.map((repo) => (
-        <a href={repo.html_url} target="_blank" rel="noopener noreferrer" key={repo.id} className="bg-[#1D1B48] p-4 rounded-md h-48 border border-[#4A5567] hover:bg-[#26235b] transition duration-300">
-          <h2 className="text-lg font-bold">{repo.name}</h2>
-          <p className="text-gray-400">{repo.description}</p>
+        <a
+          href={repo.html_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          key={repo.id}
+          className="bg-[#1D1B48] p-4 rounded-md h-48 border border-[#4A5567] hover:bg-[#26235b] transition duration-300 overflow-hidden"
+        >
+          <h2 className="text-lg font-bold truncate">{repo.name}</h2>
+          <p className="text-gray-400 truncate">{repo.description}</p>
           <div className="flex items-center mt-2 text-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M0 2a2 2 0 012-2h16a2 2 0 012 2v16a2 2 0 01-2 2H2a2 2 0 01-2-2V2zm4 16a1 1 0 001-1V9a1 1 0 00-1-1V3h12v4a1 1 0 01-1 1H5a1 1 0 00-1 1v9a1 1 0 001 1z" clipRule="evenodd" />
@@ -38,4 +43,3 @@ const ReposList = ({ repos, showAllRepos }) => {
 };
 
 export default ReposList;
-
