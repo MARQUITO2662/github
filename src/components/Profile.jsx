@@ -1,4 +1,4 @@
-// Profile.jsx
+// src/components/Profile.jsx
 import React from 'react';
 
 const Profile = ({ userData }) => {
@@ -28,7 +28,3 @@ const Profile = ({ userData }) => {
 };
 
 export default Profile;
-
-
-
-

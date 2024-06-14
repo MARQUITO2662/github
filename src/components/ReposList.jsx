@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 const ReposList = ({ repos }) => {
   const [showAllRepos, setShowAllRepos] = useState(false);
 
-  // Filtra repositorios únicos
   const uniqueRepos = [];
   repos.forEach((repo) => {
     if (!uniqueRepos.some((item) => item.id === repo.id)) {
